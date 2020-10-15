@@ -7,10 +7,10 @@ logging.basicConfig(level=logging.INFO)
 
 api = create_api()
 me = api.me()
-search_word = f'''"#EndPoliceBrutalityinNigeria" OR "#EndSWAT" OR "#EndBadGoveranceInNigeria", "#SWATMUSTEND" OR "#SARSHASENDED" OR "##EndSARS "
+search_word = f'''"#EndPoliceBrutalityinNigeria" OR "#EndCorruptionInNigeria",
+                 "#EndSWAT" OR "#EndBadGoveranceInNigeria", "#SWATMUSTEND" OR "#SARSHASENDED" OR "##EndSARS "
                OR "#EndSARS" -filter:retweets'''
 
-new_since_id = []
 since_id_filename = 'since_id.txt'
 def get_last_since_id(filename):
     f_read = open(filename, 'r')
@@ -25,6 +25,7 @@ def save_last_since_id(filename, last_id):
     return
 
 def retweet():
+    new_since_id = []
     last_id = get_last_since_id(since_id_filename)
     tweet =api.search(q=search_word,since=last_id, lang = 'en', tweet_mode='extended')
     for t in reversed(tweet):
@@ -39,12 +40,12 @@ def retweet():
             except tweepy.TweepError:
                 logging.error(f'Error while liking and retweeting', exc_info = True)
         new_since_id.append(t.id)
-        time.sleep(12)
+        time.sleep(10)
     else:
         logging.info('Done checking for tweets')
     if len(new_since_id) != 0:
         save_last_since_id(since_id_filename,max(new_since_id))
-        new_since_id.clear()
+    new_since_id.clear()
 
 if __name__ == "__main__":
     while True:
