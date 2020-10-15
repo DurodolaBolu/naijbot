@@ -8,8 +8,7 @@ logging.basicConfig(level=logging.INFO)
 api = create_api()
 me = api.me()
 search_word = f'''"#EndPoliceBrutalityinNigeria" OR "#EndCorruptionInNigeria"
-                 "#EndSWAT" OR "#EndBadGoveranceInNigeria" "#SWATMUSTEND" OR "#SARSHASENDED" OR "##EndSARS "
-               OR "#EndSARS" -filter:retweets'''
+                 "#EndSWAT" OR "#EndBadGoveranceInNigeria" "#SWATMUSTEND" OR "#SARSHASENDED" OR "#EndSARS "-filter:retweets'''
 
 since_id_filename = 'since_id.txt'
 def get_last_since_id(filename):
@@ -27,7 +26,7 @@ def save_last_since_id(filename, last_id):
 def retweet():
     new_since_id = []
     last_id = get_last_since_id(since_id_filename)
-    tweet =api.search(q=search_word,since=last_id, lang = 'en', tweet_mode='extended')
+    tweet =api.search(q=search_word,since_id=last_id, lang = 'en', tweet_mode='extended')
     for t in reversed(tweet):
         if t.user.id == me or t.favorited == True or t.retweeted == True:
             continue
@@ -47,9 +46,9 @@ def retweet():
         save_last_since_id(since_id_filename,max(new_since_id))
     new_since_id.clear()
 
-if __name__ == "__main__":
-    while True:
-        retweet()
-        logging.info('Bot Temporarily de-activated')
-        time.sleep(120)
+
+while True:
+    retweet()
+    logging.info('Bot Temporarily de-activated')
+    time.sleep(120)
 
