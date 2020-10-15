@@ -7,8 +7,8 @@ logging.basicConfig(level=logging.INFO)
 
 api = create_api()
 me = api.me()
-search_word = f'''"#EndPoliceBrutalityinNigeria" OR "#EndCorruptionInNigeria",
-                 "#EndSWAT" OR "#EndBadGoveranceInNigeria", "#SWATMUSTEND" OR "#SARSHASENDED" OR "##EndSARS "
+search_word = f'''"#EndPoliceBrutalityinNigeria" OR "#EndCorruptionInNigeria"
+                 "#EndSWAT" OR "#EndBadGoveranceInNigeria" "#SWATMUSTEND" OR "#SARSHASENDED" OR "##EndSARS "
                OR "#EndSARS" -filter:retweets'''
 
 since_id_filename = 'since_id.txt'
@@ -51,5 +51,5 @@ if __name__ == "__main__":
     while True:
         retweet()
         logging.info('Bot Temporarily de-activated')
-        time.sleep(300)
+        time.sleep(120)
 
