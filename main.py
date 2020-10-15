@@ -7,8 +7,8 @@ logging.basicConfig(level=logging.INFO)
 
 api = create_api()
 me = api.me()
-search_word = f'''"#EndPoliceBrutalityinNigeria" OR "#EndCorruptionInNigeria"
-                 "#EndSWAT" OR "#EndBadGoveranceInNigeria" "#SWATMUSTEND" OR "#SARSHASENDED" OR "#EndSARS "-filter:retweets'''
+search_word = f''' "#EndPoliceBrutalityinNigeria" OR "#EndCorruptionInNigeria" OR
+                 "#EndSWAT" OR "#EndBadGoveranceInNigeria" OR "#SWATMUSTEND" OR "#SARSHASENDED" OR "#EndSARS "-filter:retweets'''
 
 since_id_filename = 'since_id.txt'
 def get_last_since_id(filename):
