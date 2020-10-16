@@ -41,7 +41,7 @@ def retweet():
             except tweepy.TweepError:
                 logging.error(f'Error while liking and retweeting', exc_info = True)
         new_since_id.append(t.id)
-        time.sleep(15)
+        time.sleep(30)
     else:
         logging.info('Done checking for tweets')
     if len(new_since_id) != 0:
