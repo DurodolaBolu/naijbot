@@ -34,8 +34,9 @@ def retweet():
             try:
                 logging.info(f'found a tweet by @{t.user.screen_name}')
                 t.retweet()
-                t.favorite()
                 time.sleep(3)
+                t.favorite()
+                time.sleep(9)
                 api.update_status(f"Don't stop tweeting with the hashtags @{t.user.screen_name},weldone!!", t.id)
                 time.sleep(5)
                 logging.info(f'Successfully liked and retweeted post made by @{t.user.screen_name}')
