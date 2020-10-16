@@ -35,13 +35,14 @@ def retweet():
                 logging.info(f'found a tweet by @{t.user.screen_name}')
                 t.retweet()
                 t.favorite()
+                time.sleep(3)
                 api.update_status(f"Don't stop tweeting with the hashtags @{t.user.screen_name},weldone!!", t.id)
                 time.sleep(5)
                 logging.info(f'Successfully liked and retweeted post made by @{t.user.screen_name}')
             except tweepy.TweepError:
                 logging.error(f'Error while liking and retweeting', exc_info = True)
         new_since_id.append(t.id)
-        time.sleep(30)
+        time.sleep(45)
     else:
         logging.info('Done checking for tweets')
     if len(new_since_id) != 0:
@@ -52,5 +53,5 @@ def retweet():
 while True:
     retweet()
     logging.info('Bot Temporarily de-activated')
-    time.sleep(120)
+    time.sleep(180)
 
